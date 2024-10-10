@@ -105,7 +105,8 @@ def mse_loss(x, y):
     loss = loss.mean()
     return loss
     
-def compute_heat(A, t=9):
+def compute_heat(A, t=0):
+    I = torch.eye(A.shape[0], dtype=torch.float).to(A.device)
     d = torch.sum(A, dim=1)    
     d_inv = torch.pow(d, -0.5)
     d_inv[d_inv == np.inf] = 0
