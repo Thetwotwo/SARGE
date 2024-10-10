@@ -112,6 +112,8 @@ def compute_heat(A, t=9):
     D_inv = torch.diag(d_inv)
     AT = torch.matmul(D_inv, torch.matmul(A, D_inv))
     
+    ## nearly have no difference
     # heat = torch.exp(t * AT) / torch.exp(torch.tensor(t, dtype=torch.float))
-    heat = torch.matrix_exp(t * AT) / torch.exp(torch.tensor(t, dtype=torch.float))
+    # heat = torch.matrix_exp(t * AT) / torch.exp(torch.tensor(t, dtype=torch.float))
+    heat = torch.matrix_exp(t * AT - t * I)
     return heat
