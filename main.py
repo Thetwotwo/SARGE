@@ -63,7 +63,7 @@ if __name__ == '__main__':
     
     W = compute_heat(adj, t=args.t).to(args.device)
     
-    Lap1 = torch.eye(N, dtype=torch.float) - torch.mm(torch.mm(D_inv_1_2, adj), D_inv_1_2)
+    Lap1 = I - torch.mm(torch.mm(D_inv_1_2, adj), D_inv_1_2)
     Lap2 = Lap1 @ Lap1  
     Laps = torch.stack([I, Lap1, Lap2], dim=2).to(args.device)
  
