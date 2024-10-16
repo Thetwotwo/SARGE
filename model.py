@@ -35,26 +35,6 @@ class MLP(nn.Module):
 
         return x
 
-class MLPsingle(nn.Module):
-    def __init__(self, nfeat, nhid, nclass, use_bn=True):
-        super(MLPsingle, self).__init__()
-
-        self.layer1 = nn.Linear(nfeat, nhid, bias=True)
-        self.layer2 = nn.Linear(nhid, nclass, bias=True)
-
-        self.bn = nn.BatchNorm1d(nhid)
-        self.use_bn = use_bn
-        self.act_fn = nn.ReLU()
-
-    def forward(self, x):
-        x = self.layer1(x)
-        if self.use_bn:
-            x = self.bn(x)
-
-        x = self.act_fn(x)
-        x = self.layer2(x)
-
-        return x
 
 
 class GCN(nn.Module):
